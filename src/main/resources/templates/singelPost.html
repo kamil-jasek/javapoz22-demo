@@ -1,0 +1,28 @@
+<html>
+<head>
+    <style>
+        .post {
+            width: 600px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<div class="post">
+    <h3 th:text="${singlePost.title}">Tytuł posta</h3>
+    <h6 style="margin: 2px;" th:text="${'Id autora: ' + singlePost.userId}">Id autora: 1</h6>
+    <p th:text="${singlePost.body}">Treść</p>
+
+    <ul>
+        <li>
+            <h4>foo@bar.pl napisal:</h4>
+            <p>Treść komentarza</p>
+        </li>
+        <li>
+            <h4>foo@bar.pl napisal:</h4>
+            <p>Treść komentarza</p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
