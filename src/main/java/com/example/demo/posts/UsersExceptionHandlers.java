@@ -11,8 +11,8 @@ public class UsersExceptionHandlers {
 
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(code = HttpStatus.NOT_FOUND)
-    public ModelAndView handleUserNotFound() {
-        System.out.println("UserNotFoundException thrown");
+    public ModelAndView handleUserNotFound(UserNotFoundException exception) {
+        System.out.println(exception.getMessage());
         return new ModelAndView("404");
     }
 }
