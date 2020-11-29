@@ -1,0 +1,26 @@
+<html>
+<head>
+    <style>
+        h2,h3,h4,h5,h6, p {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h1>User Details</h1>
+    <h3 th:text="${user.name + ' (' + user.username + ')'}">Leanne Graham (Bret)</h3>
+    <h4 th:text="${user.email}">Sincere@april.biz</h4>
+    <h6 th:text="${user.phone}">1-770-736-8031 x56442</h6>
+    <a href="hildegard.org" th:href="${user.website}" th:text="${user.website}">hildegard.org</a>
+
+    <h1>Address</h1>
+    <p th:text="${user.address.fullAddress}">
+        92998-3874 Gwenborough, Kulas Light Apt. 556
+    </p>
+    <p th:text="${'Latitude: ' + user.address.geo.latitude}">Latitude: -37.3159</p>
+    <p th:text="${'Longitude: ' + user.address.geo.longitude}">Longitude: 81.1496</p>
+</div>
+</body>
+</html>
