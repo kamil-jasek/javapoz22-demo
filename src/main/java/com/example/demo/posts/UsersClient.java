@@ -1,6 +1,9 @@
 package com.example.demo.posts;
 
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -12,6 +15,16 @@ public class UsersClient {
     }
 
     public User getUserById(Long userId) {
-        return postsRestTemplate.getForObject("https://jsonplaceholder.typicode.com/users/" + userId, User.class);
+        try {
+            ResponseEntity<User> response = postsRestTemplate.exchange(
+                    "https://jsonplaceholder.typicode.com/users/" + userId,
+                    HttpMethod.GET,
+                    null,
+                    User.class
+            );
+            return response.getBody();
+        } catch (HttpStatusCodeException exception) {
+            throw new UserNotFoundException(userId);
+        }
     }
 }
