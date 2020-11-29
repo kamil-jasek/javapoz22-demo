@@ -20,6 +20,15 @@ public class PostClient {
         return postsRestTemplate.getForObject("https://jsonplaceholder.typicode.com/posts/" + id, Post.class);
     }
 
+    public List<Comment> findCommentsForPost(Long postId) {
+        return postsRestTemplate.exchange(
+                "https://jsonplaceholder.typicode.com/posts/" + postId + "/comments",
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Comment>>() {}
+        ).getBody();
+    }
+
     public List<Comment> findCommentsForPost(Long postId, String commentAuthor) {
         return postsRestTemplate.exchange(
                 "https://jsonplaceholder.typicode.com/posts/" + postId + "/comments",
