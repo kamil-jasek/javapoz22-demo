@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostClient {
@@ -19,12 +20,15 @@ public class PostClient {
         return postsRestTemplate.getForObject("https://jsonplaceholder.typicode.com/posts/" + id, Post.class);
     }
 
-    public List<Comment> findCommentsForPost(Long postId) {
+    public List<Comment> findCommentsForPost(Long postId, String commentAuthor) {
         return postsRestTemplate.exchange(
                 "https://jsonplaceholder.typicode.com/posts/" + postId + "/comments",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<Comment>>() {}
-            ).getBody();
+            ).getBody()
+                .stream()
+                .filter(comment -> commentAuthor == null || comment.getEmail().equals(commentAuthor))
+                .collect(Collectors.toList());
     }
 }
