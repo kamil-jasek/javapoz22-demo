@@ -20,6 +20,7 @@ public class PostController {
     public ModelAndView singlePost(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("singelPost");
         modelAndView.addObject("singlePost", postClient.findPostById(id));
+        modelAndView.addObject("comments", postClient.findCommentsForPost(id));
         return modelAndView;
     }
 }

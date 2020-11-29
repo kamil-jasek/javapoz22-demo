@@ -14,13 +14,9 @@
     <p th:text="${singlePost.body}">Treść</p>
 
     <ul>
-        <li>
-            <h4>foo@bar.pl napisal:</h4>
-            <p>Treść komentarza</p>
-        </li>
-        <li>
-            <h4>foo@bar.pl napisal:</h4>
-            <p>Treść komentarza</p>
+        <li th:each="comment : ${comments}">
+            <h4 th:text="${comment.email}">foo@bar.pl napisal:</h4>
+            <p th:text="${comment.body}">Treść komentarza</p>
         </li>
     </ul>
 </div>
