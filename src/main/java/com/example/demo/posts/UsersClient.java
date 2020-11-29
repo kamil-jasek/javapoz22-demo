@@ -8,15 +8,15 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class UsersClient {
-    private RestTemplate postsRestTemplate;
+    private RestTemplate usersRestTemplate;
 
-    public UsersClient(RestTemplate postsRestTemplate) {
-        this.postsRestTemplate = postsRestTemplate;
+    public UsersClient(RestTemplate usersRestTemplate) {
+        this.usersRestTemplate = usersRestTemplate;
     }
 
     public User getUserById(Long userId) {
         try {
-            ResponseEntity<User> response = postsRestTemplate.exchange(
+            ResponseEntity<User> response = usersRestTemplate.exchange(
                     "https://jsonplaceholder.typicode.com/users/" + userId,
                     HttpMethod.GET,
                     null,
