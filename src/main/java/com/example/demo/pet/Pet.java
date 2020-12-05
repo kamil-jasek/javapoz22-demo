@@ -8,8 +8,7 @@ public class Pet {
     private String owner;
     private String imgUrl;
 
-    public Pet(Long id, String name, String breed, Integer age, String owner, String imgUrl) {
-        this.id = id;
+    public Pet(String name, String breed, Integer age, String owner, String imgUrl) {
         this.name = name;
         this.breed = breed;
         this.age = age;
@@ -39,5 +38,9 @@ public class Pet {
 
     public String getImgUrl() {
         return imgUrl;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

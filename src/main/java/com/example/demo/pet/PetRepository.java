@@ -7,4 +7,5 @@ public interface PetRepository {
     Optional<Pet> findById(Long id);
     List<Pet> findAll();
     List<Pet> findAllBetweenAge(Integer ageFrom, Integer ageTo);
+    Pet save(Pet pet);
 }

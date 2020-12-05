@@ -1,10 +1,7 @@
 package com.example.demo.pet;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -21,6 +18,12 @@ public class PetController {
         ModelAndView modelAndView = new ModelAndView("pet/allPets");
         modelAndView.addObject("pets", petService.findAllBetweenAge(ageFrom, ageTo));
         return modelAndView;
+    }
+
+    @PostMapping
+    public String addPet(@ModelAttribute Pet pet) {
+        Pet savedPet = petService.savePet(pet);
+        return "redirect:/pet/" + savedPet.getId();
     }
 
     @GetMapping("/{id}")

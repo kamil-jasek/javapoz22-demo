@@ -24,4 +24,8 @@ public class PetService {
         return petRepository.findById(id)
                 .orElse(null);
     }
+
+    public Pet savePet(Pet pet) {
+        return petRepository.save(pet);
+    }
 }
