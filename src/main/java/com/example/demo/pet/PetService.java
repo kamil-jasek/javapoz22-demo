@@ -16,6 +16,10 @@ public class PetService {
         return petRepository.findAll();
     }
 
+    public List<Pet> findAllBetweenAge(Integer ageFrom, Integer ageTo) {
+        return petRepository.findAllBetweenAge(ageFrom, ageTo);
+    }
+
     public Pet findById(Long id) {
         return petRepository.findById(id)
                 .orElse(null);
