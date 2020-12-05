@@ -22,7 +22,7 @@ public class PetService {
 
     public Pet findById(Long id) {
         return petRepository.findById(id)
-                .orElse(null);
+                .orElseThrow(() -> new PetNotFoundException(id));
     }
 
     public Pet savePet(Pet pet) {
