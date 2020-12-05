@@ -1,0 +1,17 @@
+<html>
+<body>
+<ul>
+    <li th:each="pet : ${pets}" style="margin-bottom: 16px">
+        <a th:href="'/pet/' + ${pet.id}" href="/pet/2">
+            <img width="150px" height="150px"
+                 th:src="${pet.imgUrl}"
+                 src="https://i.wpimg.pl/1920x0/portal-abczdrowie.wpcdn.pl/2018/11/21/owczarek-niemiecki_5eba.jpg"
+                 th:alt="${pet.name} + ' - ' + ${pet.breed}"
+                 alt="Psislaw - Owczarek Niemiecki">
+            <p style="margin: 0" th:text="${pet.name} + ' (' + ${pet.age} + ')'">Psislaw (5)</p>
+            <h6 style="margin: 0" th:text="${pet.breed}">Owczarek Niemiecki</h6>
+        </a>
+    </li>
+</ul>
+</body>
+</html>
