@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${pet.name}">Reksio</title>
+</head>
+<body>
+<div>
+    <h2 style="margin: 0" th:text="${pet.name} + ' - (' + ${pet.breed} + ')'">Reksio - (Jack Russell terrier)</h2>
+    <p style="margin: 0" th:text="'Wiek: ' + ${pet.age}">Wiek: 3</p>
+    <p style="margin: 0" th:text="'Właściciel: ' + ${pet.owner}">Właściciel: Jan Kowalski</p>
+
+    <img width="300px" height="300px"
+         th:src="${pet.imgUrl}"
+         src="https://bi.im-g.pl/im/70/59/14/z21336688IBG,REKSIO---SERIAL-ANIMOWANY-DLA-DZIECI.jpg"
+         th:alt="${pet.name}"
+         alt="Reksio"
+    >
+</div>
+</body>
+</html>
