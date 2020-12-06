@@ -76,4 +76,35 @@ class JpaPetRepositoryTest {
         assertArrayEquals(new Object[] { BigInteger.valueOf(1), "Janek" }, result.get(0));
         assertArrayEquals(new Object[] { BigInteger.valueOf(2), "Kamil" }, result.get(1));
     }
+
+    @Test
+    @Transactional
+    void shouldCountPetsWithMaximumAgeByOwner() {
+        // given
+        var pet1 = new Pet("rambo", "terrier", 7, "Kamil", "/rambo.jpg");
+        var pet2 = new Pet("rocky", "terrier", 3, "Kamil", "/rocky.jpg");
+        var pet3 = new Pet("rudolf", "terrier", 5, "Janek", "/rudolf.jpg");
+        var pet4 = new Pet("rudolf", "terrier", 2, "Janek", "/rudolf.jpg");
+        var pet5 = new Pet("rudolf", "terrier", 2, "Robert", "/rudolf.jpg");
+        repository.saveAll(List.of(pet1, pet2, pet3, pet4, pet5));
+
+        // when
+        var result = repository.countByOwnerWithMaximumAge(5);
+
+        // then
+        assertFalse(result.isEmpty());
+        assertEquals(3, result.size());
+
+        var row1 = result.get(0);
+        assertEquals(2, row1.getCount());
+        assertEquals("Janek", row1.getOwner());
+
+        var row2 = result.get(1);
+        assertEquals(1, row2.getCount());
+        assertEquals("Kamil", row2.getOwner());
+
+        var row3 = result.get(2);
+        assertEquals(1, row3.getCount());
+        assertEquals("Robert", row3.getOwner());
+    }
 }

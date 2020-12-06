@@ -12,4 +12,13 @@ public interface JpaPetRepository extends JpaRepository<Pet, Long> {
     @Query(value = "select count(id), owner from pets where age >= :age group by owner order by owner",
            nativeQuery = true)
     List<Object[]> countByOwnerWithMinimalAge(int age);
+
+    @Query(value = "select count(id) as count, owner from pets where age <= :age group by owner order by owner",
+           nativeQuery = true)
+    List<CountByOwner> countByOwnerWithMaximumAge(int age);
+
+    interface CountByOwner {
+        int getCount();
+        String getOwner();
+    }
 }
