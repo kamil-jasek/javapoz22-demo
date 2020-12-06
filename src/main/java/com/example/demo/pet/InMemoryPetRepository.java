@@ -1,14 +1,11 @@
 package com.example.demo.pet;
 
-import org.springframework.stereotype.Repository;
-
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import javax.annotation.PostConstruct;
 
-@Repository
 public class InMemoryPetRepository implements PetRepository {
     private List<Pet> pets;
     private Long nextPetId;

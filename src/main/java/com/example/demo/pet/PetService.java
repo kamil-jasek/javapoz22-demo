@@ -6,9 +6,10 @@ import java.util.List;
 
 @Service
 public class PetService {
-    private PetRepository petRepository;
 
-    public PetService(PetRepository petRepository) {
+    private final JpaPetRepository petRepository;
+
+    public PetService(JpaPetRepository petRepository) {
         this.petRepository = petRepository;
     }
 
