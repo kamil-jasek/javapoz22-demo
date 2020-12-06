@@ -2,6 +2,7 @@ package com.example.demo.pet;
 
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 public interface JpaPetRepository extends JpaRepository<Pet, Long> {
@@ -21,4 +22,8 @@ public interface JpaPetRepository extends JpaRepository<Pet, Long> {
         int getCount();
         String getOwner();
     }
+
+    @Modifying
+    @Query("update Pet p set p.name = :name where p.id = :id")
+    int updatePetName(long id, String name);
 }

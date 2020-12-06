@@ -9,6 +9,7 @@ import java.math.BigInteger;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import org.hibernate.Hibernate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -106,5 +107,22 @@ class JpaPetRepositoryTest {
         var row3 = result.get(2);
         assertEquals(1, row3.getCount());
         assertEquals("Robert", row3.getOwner());
+    }
+
+    @Test
+    @Transactional
+    void shouldChangePetName() {
+        // given
+        var pet = new Pet("rambo", "terrier", 7, "Kamil", "/rambo.jpg");
+        repository.save(pet);
+        em.clear();
+
+        // when
+        final var updated = repository.updatePetName(pet.getId(), "rocky");
+
+        // then
+        assertEquals(1, updated);
+        final var updatedPet = Hibernate.unproxy(repository.getOne(pet.getId()), Pet.class);
+        assertEquals("rocky", updatedPet.getName());
     }
 }

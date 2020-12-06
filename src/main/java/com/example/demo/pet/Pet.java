@@ -20,7 +20,7 @@ public class Pet {
     private String imgUrl;
 
     // only for JPA
-    private Pet() {}
+    protected Pet() {}
 
     public Pet(String name, String breed, Integer age, String owner, String imgUrl) {
         this.name = name;
